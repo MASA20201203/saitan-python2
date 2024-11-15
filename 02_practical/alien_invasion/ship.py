@@ -3,7 +3,7 @@ import pygame
 class Ship:
     """宇宙船を管理するクラス"""
 
-    def __init___(self, ai_game):
+    def __init__(self, ai_game):
         """宇宙船を初期化し、開始時の位置を設定する"""
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
