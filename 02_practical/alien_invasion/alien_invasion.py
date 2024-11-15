@@ -87,11 +87,15 @@ class AlienInvasion:
 
         current_x = alien_width
         while current_x < (self.settings.screen_width -2 * alien_width):
-            new_alien = Alien(self)
-            new_alien.x = current_x
-            new_alien.rect.x = new_alien.x
-            self.aliens.add(new_alien)
+            self._create_alien(current_x)
             current_x += 2 * alien_width
+
+    def _create_alien(self, x_positoin):
+        """エイリアンを1匹作成し列の中に配置する"""
+        new_alien = Alien(self)
+        new_alien.x = x_positoin
+        new_alien.rect.x = x_positoin
+        self.aliens.add(new_alien)
 
     def _update_screen(self):
         """画面上の画像を更新し、新しい画面に切り替える"""
