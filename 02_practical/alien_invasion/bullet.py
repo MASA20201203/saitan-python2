@@ -9,7 +9,7 @@ class Bullet(Sprite):
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
-        self.color = self.settings.alien_color
+        self.color = self.settings.bullet_color
 
         # 弾のrectを(0,0)の位置に作成してから、正しい位置を設定する
         self.rect = pygame.Rect(0, 0, self.settings.bullet_width,
