@@ -21,7 +21,12 @@ class Alien(Sprite):
         # エイリアンの実際の位置を格納する
         self.x = float(self.rect.x)
 
+    def check_edges(self):
+        """エイリアンが画面の端に達したらTrueを返す"""
+        screen_rect = self.screen.get_rect()
+        return (self.rect.right >= screen_rect.right) or (self.rect.left <= 0)
+
     def update(self):
-        """エイリアンを右に移動する"""
-        self.x += self.settings.alien_speed
+        """エイリアンを右または左に移動する"""
+        self.x += self.settings.alien_speed * self.settings.fleet_direction
         self.rect.x = self.x
