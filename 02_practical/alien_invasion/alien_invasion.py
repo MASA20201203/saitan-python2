@@ -23,18 +23,23 @@ class AlienInvasion:
     def run_game(self):
         """ゲームのメインループを開始する"""
         while True:
-            # イベントを監視する
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-
-            # ループを通過するたびに画面を再描画する
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-
-            # 最新の画面を表示する
-            pygame.display.flip()
+            self._check_events()
+            self._update_screen()
             self.clock.tick(60)
+
+    def _check_events(self):
+        """キーボードとマウスのイベントを監視する"""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        """画面上の画像を更新し、新しい画面に切り替える"""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+
+        # 最新の画面を表示する
+        pygame.display.flip()
 
 if __name__ == '__main__':
     # ゲームのインスタンスを作成し、ゲームを実行する
