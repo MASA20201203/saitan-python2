@@ -81,7 +81,8 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
 
     def _update_aliens(self):
-        """艦隊にいる全エイリアンの位置を更新する"""
+        """艦隊が画面の端にいるか確認してから、位置を更新する"""
+        self._check_fleet_edges()
         self.aliens.update()
 
     def _create_fleet(self):
@@ -108,6 +109,19 @@ class AlienInvasion:
         new_alien.rect.x = x_positoin
         new_alien.rect.y = y_position
         self.aliens.add(new_alien)
+
+    def _check_fleet_edges(self):
+        """エイリアンが画面の端に達した場合に適切な処理を行う"""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+    def _change_fleet_direction(self):
+        """艦隊を下に移動し、移動方向を変更する"""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
 
     def _update_screen(self):
         """画面上の画像を更新し、新しい画面に切り替える"""
