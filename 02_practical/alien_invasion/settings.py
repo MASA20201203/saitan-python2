@@ -1,0 +1,9 @@
+class Settings:
+    """ エイリアン新緑の全設定を格納するクラス """
+
+    def __init__(self):
+        """ ゲームの初期設定を初期化する """
+        # 画面設定
+        self.screen_width = 1200
+        self.screen_height = 800
+        self.bg_color = (230, 230, 230)
