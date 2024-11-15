@@ -81,20 +81,26 @@ class AlienInvasion:
     def _create_fleet(self):
         """エイリアン艦隊を作成する"""
         # 1匹のエイリアンを生成し、スペースがなくなるまでエイリアンを追加し続ける
-        # 各エイリアンの間にはエイリアン1匹分のスペースを空ける
+        # 各エイリアンの間には縦横ともにエイリアン1匹分のスペースを空ける
         alien = Alien(self)
-        alien_width = alien.rect.width
+        alien_width, alien_height = alien.rect.size
 
-        current_x = alien_width
-        while current_x < (self.settings.screen_width -2 * alien_width):
-            self._create_alien(current_x)
-            current_x += 2 * alien_width
+        current_x, current_y = alien_width, alien_height
+        while current_y < (self.settings.screen_height - 3 * alien_height):
+            while current_x < (self.settings.screen_width -2 * alien_width):
+                self._create_alien(current_x, current_y)
+                current_x += 2 * alien_width
 
-    def _create_alien(self, x_positoin):
+            # 列の最後でX座標をリセットし、Y座標を増加する
+            current_x = alien_width
+            current_y += 2 * alien_height
+
+    def _create_alien(self, x_positoin, y_position):
         """エイリアンを1匹作成し列の中に配置する"""
         new_alien = Alien(self)
         new_alien.x = x_positoin
         new_alien.rect.x = x_positoin
+        new_alien.rect.y = y_position
         self.aliens.add(new_alien)
 
     def _update_screen(self):
