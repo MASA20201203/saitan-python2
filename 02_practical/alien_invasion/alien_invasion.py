@@ -8,6 +8,7 @@ class AlienInvasion:
     def __init__(self):
         """ゲームを初期化し、ゲームのリソースを作成する"""
         pygame.init()
+        self.clock = pygame.time.Clock()
 
         self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("エイリアン侵略")
@@ -22,6 +23,7 @@ class AlienInvasion:
 
             # 最新の画面を表示する
             pygame.display.flip()
+            self.clock.tick(60)
 
 if __name__ == '__main__':
     # ゲームのインスタンスを作成し、ゲームを実行する
