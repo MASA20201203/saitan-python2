@@ -24,13 +24,15 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
 
+        self._create_fleet()
+
     def run_game(self):
         """ゲームのメインループを開始する"""
         while True:
             self._check_events()
             self.ship.update()
             self._update_bullets()
-            self._create_fleet()
+            self._update_aliens()
             self._update_screen()
             self.clock.tick(60)
 
@@ -77,6 +79,10 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+    def _update_aliens(self):
+        """艦隊にいる全エイリアンの位置を更新する"""
+        self.aliens.update()
 
     def _create_fleet(self):
         """エイリアン艦隊を作成する"""
