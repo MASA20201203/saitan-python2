@@ -80,9 +80,18 @@ class AlienInvasion:
 
     def _create_fleet(self):
         """エイリアン艦隊を作成する"""
-        # 1匹のエイリアンを作成する
+        # 1匹のエイリアンを生成し、スペースがなくなるまでエイリアンを追加し続ける
+        # 各エイリアンの間にはエイリアン1匹分のスペースを空ける
         alien = Alien(self)
-        self.aliens.add(alien)
+        alien_width = alien.rect.width
+
+        current_x = alien_width
+        while current_x < (self.settings.screen_width -2 * alien_width):
+            new_alien = Alien(self)
+            new_alien.x = current_x
+            new_alien.rect.x = new_alien.x
+            self.aliens.add(new_alien)
+            current_x += 2 * alien_width
 
     def _update_screen(self):
         """画面上の画像を更新し、新しい画面に切り替える"""
