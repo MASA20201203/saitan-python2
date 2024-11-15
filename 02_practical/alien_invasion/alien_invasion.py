@@ -13,6 +13,9 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("エイリアン侵略")
 
+        # 背景色を設定する
+        self.bg_color = (230, 230, 230)
+
     def run_game(self):
         """ゲームのメインループを開始する"""
         while True:
@@ -20,6 +23,9 @@ class AlienInvasion:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+
+            # ループを通過するたびに画面を再描画する
+            self.screen.fill(self.bg_color)
 
             # 最新の画面を表示する
             pygame.display.flip()
