@@ -5,6 +5,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -32,7 +33,10 @@ class AlienInvasion:
         self._create_fleet()
 
         # エイリアン侵略ゲームをアクティブな状態で開始する
-        self.game_active = True
+        self.game_active = False
+
+        # Play ボタンを作成する
+        self.play_button = Button(self, "Play")
 
     def run_game(self):
         """ゲームのメインループを開始する"""
@@ -43,8 +47,9 @@ class AlienInvasion:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
-                self._update_screen()
                 self.clock.tick(60)
+
+            self._update_screen()
 
     def _check_events(self):
         """キーボードとマウスのイベントを監視する"""
@@ -187,6 +192,10 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen)
+
+        # ゲームが非アクティブの場合は Play ボタンを描画する
+        if not self.game_active:
+            self.play_button.draw_button()
 
         # 最新の画面を表示する
         pygame.display.flip()
