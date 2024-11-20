@@ -107,6 +107,9 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
 
+        # 画面の一番下に到達したエイリアンを探す
+        self._check_aliens_bottom()
+
     def _ship_hit(self):
         """エイリアンと宇宙船の衝突に対応する"""
         # 残りの宇宙船の数を減らす
@@ -122,6 +125,14 @@ class AlienInvasion:
 
         # 一時停止する
         sleep(0.5)
+
+    def _check_aliens_bottom(self):
+        """エイリアンが画面の底に達したかを確認する"""
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= self.settings.screen_height:
+                # 宇宙船を破壊した時と同じように処理する
+                self._ship_hit()
+                break
 
     def _create_fleet(self):
         """エイリアン艦隊を作成する"""
