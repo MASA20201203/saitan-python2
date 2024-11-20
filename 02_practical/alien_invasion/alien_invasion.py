@@ -31,15 +31,20 @@ class AlienInvasion:
 
         self._create_fleet()
 
+        # エイリアン侵略ゲームをアクティブな状態で開始する
+        self.game_active = True
+
     def run_game(self):
         """ゲームのメインループを開始する"""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
-            self._update_screen()
-            self.clock.tick(60)
+
+            if self.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+                self._update_screen()
+                self.clock.tick(60)
 
     def _check_events(self):
         """キーボードとマウスのイベントを監視する"""
@@ -112,19 +117,22 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """エイリアンと宇宙船の衝突に対応する"""
-        # 残りの宇宙船の数を減らす
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
+            # 残りの宇宙船の数を減らす
+            self.stats.ships_left -= 1
 
-        # 残ったエイリアンと弾を廃棄する
-        self.bullets.empty()
-        self.aliens.empty()
+            # 残ったエイリアンと弾を廃棄する
+            self.bullets.empty()
+            self.aliens.empty()
 
-        # 新しい艦隊を生成し、宇宙船を画面の中央に配置する
-        self._create_fleet()
-        self.ship.center_ship()
+            # 新しい艦隊を生成し、宇宙船を画面の中央に配置する
+            self._create_fleet()
+            self.ship.center_ship()
 
-        # 一時停止する
-        sleep(0.5)
+            # 一時停止する
+            sleep(0.5)
+        else:
+            self.game_active = False
 
     def _check_aliens_bottom(self):
         """エイリアンが画面の底に達したかを確認する"""
