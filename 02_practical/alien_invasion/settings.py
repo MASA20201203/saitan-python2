@@ -10,6 +10,7 @@ class Settings:
 
         # 宇宙船の設定
         self.ship_speed = 1.5
+        self.ship_limit = 3
 
         # 弾の設定
         self.bullet_speed = 2.5

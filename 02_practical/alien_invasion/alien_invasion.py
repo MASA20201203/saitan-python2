@@ -1,8 +1,10 @@
 import sys
+from time import sleep
 
 import pygame
 
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -19,6 +21,9 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("エイリアン侵略")
+
+        # ゲームの統計情報を格納するインスタンスを作成する
+        self.stats = GameStats(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -100,7 +105,23 @@ class AlienInvasion:
 
         # エイリアンと宇宙船の衝突をチェックする
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("宇宙船にぶつかった！！！")
+            self._ship_hit()
+
+    def _ship_hit(self):
+        """エイリアンと宇宙船の衝突に対応する"""
+        # 残りの宇宙船の数を減らす
+        self.stats.ships_left -= 1
+
+        # 残ったエイリアンと弾を廃棄する
+        self.bullets.empty()
+        self.aliens.empty()
+
+        # 新しい艦隊を生成し、宇宙船を画面の中央に配置する
+        self._create_fleet()
+        self.ship.center_ship()
+
+        # 一時停止する
+        sleep(0.5)
 
     def _create_fleet(self):
         """エイリアン艦隊を作成する"""
