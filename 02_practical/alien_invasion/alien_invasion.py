@@ -85,6 +85,11 @@ class AlienInvasion:
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
 
+        if not self.aliens:
+            # 艦隊全滅時に新しい艦隊を作成する
+            self.bullets.empty()
+            self._create_fleet()
+
     def _update_aliens(self):
         """艦隊が画面の端にいるか確認してから、位置を更新する"""
         self._check_fleet_edges()
