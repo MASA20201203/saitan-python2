@@ -80,6 +80,11 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
+        # 弾がエイリアンに当たったかをチェックする
+        #  その場合は弾とエイリアンを廃棄する
+        collisions = pygame.sprite.groupcollide(
+            self.bullets, self.aliens, True, True)
+
     def _update_aliens(self):
         """艦隊が画面の端にいるか確認してから、位置を更新する"""
         self._check_fleet_edges()
