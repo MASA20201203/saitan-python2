@@ -80,13 +80,16 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
-        # 弾がエイリアンに当たったかをチェックする
-        #  その場合は弾とエイリアンを廃棄する
+        self._check_bullet_alien_collisions()
+
+    def _check_bullet_alien_collisions(self):
+        """弾とエイリアンの衝突に対応する"""
+        # 衝突した弾とエイリアンを削除する
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
 
         if not self.aliens:
-            # 艦隊全滅時に新しい艦隊を作成する
+            # 存在する弾を破壊し、新しい艦隊を作成する
             self.bullets.empty()
             self._create_fleet()
 
