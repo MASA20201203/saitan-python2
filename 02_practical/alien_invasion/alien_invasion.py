@@ -85,7 +85,17 @@ class AlienInvasion:
     def _check_play_button(self, mouse_pos):
         """プレイヤーが Play ボタンをクリックしたら新規ゲームを開始する"""
         if self.play_button.rect.collidepoint(mouse_pos):
+            # ゲームの統計情報をリセットする
+            self.stats.reset_stats()
             self.game_active = True
+
+            # 残った弾とエイリアンを廃棄する
+            self.bullets.empty()
+            self.aliens.empty()
+
+            # 新しい艦隊を生成し、宇宙船を画面の中央に配置する
+            self._create_fleet()
+            self.ship.center_ship()
 
     def _fire_bullet(self):
         """新しい弾を生成し bullets グループに追加する"""
