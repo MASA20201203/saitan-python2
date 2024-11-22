@@ -1,10 +1,12 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship:
+class Ship(Sprite):
     """宇宙船を管理するクラス"""
 
     def __init__(self, ai_game):
         """宇宙船を初期化し、開始時の位置を設定する"""
+        super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
