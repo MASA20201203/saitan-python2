@@ -98,6 +98,9 @@ class AlienInvasion:
             self._create_fleet()
             self.ship.center_ship()
 
+            # マウスカーソルを非表示にする
+            pygame.mouse.set_visible(False)
+
     def _fire_bullet(self):
         """新しい弾を生成し bullets グループに追加する"""
         if len(self.bullets) < self.settings.bullets_allowed:
@@ -157,6 +160,7 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.game_active = False
+            pygame.mouse.set_visible(True)
 
     def _check_aliens_bottom(self):
         """エイリアンが画面の底に達したかを確認する"""
