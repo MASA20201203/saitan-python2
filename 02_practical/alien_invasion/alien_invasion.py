@@ -5,6 +5,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 from ship import Ship
 from bullet import Bullet
@@ -23,8 +24,9 @@ class AlienInvasion:
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("エイリアン侵略")
 
-        # ゲームの統計情報を格納するインスタンスを作成する
+        # ゲームの統計情報とスコアボードのインスタンスを生成する
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -221,6 +223,9 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen)
+
+        # 得点の情報を描画する
+        self.sb.show_score()
 
         # ゲームが非アクティブの場合は Play ボタンを描画する
         if not self.game_active:
