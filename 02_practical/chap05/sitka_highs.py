@@ -7,5 +7,10 @@ lines = path.read_text().splitlines()
 render = csv.reader(lines)
 header_row = next(render)
 
-for index, column_header in enumerate(header_row):
-    print(index, column_header)
+# 最高気温を取り出す
+highs = []
+for row in render:
+    high = int(row[4])
+    highs.append(high)
+
+print(highs)
