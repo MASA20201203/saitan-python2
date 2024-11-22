@@ -19,5 +19,7 @@ for value in poss_results:
     frequencies.append(frequency)
 
 # 結果を可視化する
-fig = px.bar(x=poss_results, y=frequencies)
+tittle = "6個の6面サイコロを1,000回転がした結果"
+labels = {"x": "結果", "y": "発生回数"}
+fig = px.bar(x=poss_results, y=frequencies, title=tittle, labels=labels)
 fig.show()
