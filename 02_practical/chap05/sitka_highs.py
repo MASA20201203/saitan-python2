@@ -23,8 +23,9 @@ for row in render:
 # 最高気温のグラフを描画する
 plt.style.use('seaborn-v0_8')
 fig, ax = plt.subplots()
-ax.plot(dates, highs, c='red')
-ax.plot(dates, lows, c='blue')
+ax.plot(dates, highs, c='red', alpha=0.5)
+ax.plot(dates, lows, c='blue', alpha=0.5)
+ax.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
 
 # グラフのフォーマット設定
 ax.set_title('Daily High and Low Temperatures, 2021', fontsize=24)
