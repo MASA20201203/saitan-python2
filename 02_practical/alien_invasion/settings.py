@@ -28,6 +28,9 @@ class Settings:
         # ゲームの加速度
         self.speedup_scale = 1.1
 
+        # エイリアンの点数が増加する量
+        self.score_scale = 1.5
+
         self.initialize_dynamic_settings()
 
     def initialize_dynamic_settings(self):
@@ -43,7 +46,9 @@ class Settings:
         self.alien_points = 50
 
     def increase_speed(self):
-        """ 速度の設定値を増やす """
+        """ 速度の設定値とエイリアンの点数を増やす """
         self.ship_speed *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
+
+        self.alien_points = int(self.alien_points * self.score_scale)
