@@ -13,3 +13,4 @@ class GameStats:
         """ゲーム中に変更される統計情報を初期化する"""
         self.ships_left = self.settings.ship_limit
         self.score = 0
+        self.level = 1

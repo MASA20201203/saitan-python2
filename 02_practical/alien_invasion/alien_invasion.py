@@ -94,6 +94,7 @@ class AlienInvasion:
             # ゲームの統計情報をリセットする
             self.stats.reset_stats()
             self.sb.prep_score()
+            self.sb.prep_level()
             self.game_active = True
 
             # 残った弾とエイリアンを廃棄する
@@ -138,12 +139,14 @@ class AlienInvasion:
             self.sb.check_high_score()
 
         if not self.aliens:
-            # 存在する弾を破壊し、新しい艦隊を作成する
+            # 存在する弾を破壊し、新しい艦隊を作成し、速度を上げる
             self.bullets.empty()
             self._create_fleet()
-
-            # 速度を上げる
             self.settings.increase_speed()
+
+            # レベルを増やす
+            self.stats.level += 1
+            self.sb.prep_level()
 
     def _update_aliens(self):
         """艦隊が画面の端にいるか確認してから、位置を更新する"""
