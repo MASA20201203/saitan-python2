@@ -21,6 +21,10 @@ while True:
     ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none',
             s=100)
 
+    # 軸を非表示にする
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+
     plt.show()
 
     keep_running = input("別のランダムウォークを生成しますか？ (y/n): ")
