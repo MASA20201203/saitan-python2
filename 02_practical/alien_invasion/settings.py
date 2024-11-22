@@ -24,3 +24,23 @@ class Settings:
         self.fleet_drop_speed = 10
         # 艦隊の移動方向を表し 1 は右、 01 は左に移動することを表す
         self.fleet_direction = 1
+
+        # ゲームの加速度
+        self.speedup_scale = 1.1
+
+        self.initialize_dynamic_settings()
+
+    def initialize_dynamic_settings(self):
+        """ ゲーム中に変更される設定を初期化する """
+        self.ship_speed = 1.5
+        self.bullet_speed = 2.5
+        self.alien_speed = 1.0
+
+        # 戦隊の移動方向を表し 1 は右、 -1 は左に移動することを表す
+        self.fleet_direction = 1
+
+    def increase_speed(self):
+        """ 速度の設定値を増やす """
+        self.ship_speed *= self.speedup_scale
+        self.bullet_speed *= self.speedup_scale
+        self.alien_speed *= self.speedup_scale

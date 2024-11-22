@@ -130,6 +130,9 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
 
+            # 速度を上げる
+            self.settings.increase_speed()
+
     def _update_aliens(self):
         """艦隊が画面の端にいるか確認してから、位置を更新する"""
         self._check_fleet_edges()
