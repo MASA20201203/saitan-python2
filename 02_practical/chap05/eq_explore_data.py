@@ -1,6 +1,8 @@
 from pathlib import Path
 import json
 
+import plotly.express as px
+
 # データを文字列として読み込み、Pythonのオブジェクトに変換する
 path = Path('eq_data/eq_data_1_day_m1.geojson')
 contents = path.read_text()
@@ -18,6 +20,6 @@ for eq_dict in all_eq_dicts:
     lons.append(lon)
     lats.append(lat)
 
-print(mags[:10])
-print(lons[:5])
-print(lats[:5])
+title = '世界の地震'
+fig = px.scatter_geo(lat=lats, lon=lons, title=title)
+fig.show()
