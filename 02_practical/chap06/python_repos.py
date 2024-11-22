@@ -21,11 +21,12 @@ print(f"情報が返されたリポジトリ数: {len(repo_dicts)}")
 # 1つ目のリポジトリについて調べる
 repo_dict = repo_dicts[0]
 
-print("\n1つ目のリポジトリ")
-print(f"名前: {repo_dict['name']}")
-print(f"所有者: {repo_dict['owner']['login']}")
-print(f"スター数: {repo_dict['stargazers_count']}")
-print(f"リポジトリ: {repo_dict['html_url']}")
-print(f"作成日時: {repo_dict['created_at']}")
-print(f"最終更新日時: {repo_dict['updated_at']}")
-print(f"説明: {repo_dict['description']}")
+print("\n各リポジトリの情報の抜粋:")
+for repo_dict in repo_dicts:
+    print(f"\n名前: {repo_dict['name']}")
+    print(f"所有者: {repo_dict['owner']['login']}")
+    print(f"スター数: {repo_dict['stargazers_count']}")
+    print(f"リポジトリ: {repo_dict['html_url']}")
+    print(f"作成日時: {repo_dict['created_at']}")
+    print(f"最終更新日時: {repo_dict['updated_at']}")
+    print(f"説明: {repo_dict['description']}")
