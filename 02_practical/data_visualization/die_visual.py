@@ -1,3 +1,5 @@
+import plotly.express as px
+
 from die import Die
 
 # D6を作成する
@@ -16,4 +18,6 @@ for value in poss_results:
     frequency = results.count(value)
     frequencies.append(frequency)
 
-print(frequencies)
+# 結果を可視化する
+fig = px.bar(x=poss_results, y=frequencies)
+fig.show()
