@@ -39,6 +39,9 @@ class Settings:
         # 戦隊の移動方向を表し 1 は右、 -1 は左に移動することを表す
         self.fleet_direction = 1
 
+        # 点数の設定
+        self.alien_points = 50
+
     def increase_speed(self):
         """ 速度の設定値を増やす """
         self.ship_speed *= self.speedup_scale
