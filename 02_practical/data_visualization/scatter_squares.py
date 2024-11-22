@@ -15,4 +15,5 @@ ax.set_ylabel("Square of Value", fontsize=14)
 # 各軸の範囲を設定する
 ax.axis([0, 1100, 0, 1_100_000])
 ax.ticklabel_format(style='plain')
-plt.show()
+# plt.show()
+plt.savefig('squares_plot.png', bbox_inches='tight')
