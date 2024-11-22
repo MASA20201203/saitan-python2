@@ -4,11 +4,11 @@ from die import Die
 
 # D6を作成する
 die_1 = Die()
-die_2 = Die()
+die_2 = Die(10)
 
 # サイコロを転がし、結果をリストに格納する
 results = []
-for roll_num in range(1000):
+for roll_num in range(50_000):
     result = die_1.roll() + die_2.roll()
     results.append(result)
 
@@ -21,7 +21,7 @@ for value in poss_results:
     frequencies.append(frequency)
 
 # 結果を可視化する
-tittle = "2個の6面サイコロを1,000回転がした結果"
+tittle = "6面サイコロと10面サイコロを50,000回転がした結果"
 labels = {"x": "結果", "y": "発生回数"}
 fig = px.bar(x=poss_results, y=frequencies, title=tittle, labels=labels)
 
