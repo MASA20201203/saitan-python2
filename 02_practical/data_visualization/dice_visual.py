@@ -24,4 +24,8 @@ for value in poss_results:
 tittle = "2個の6面サイコロを1,000回転がした結果"
 labels = {"x": "結果", "y": "発生回数"}
 fig = px.bar(x=poss_results, y=frequencies, title=tittle, labels=labels)
+
+# グラフをカスタマイズする
+fig.update_layout(xaxis={"dtick": 1})
+
 fig.show()
