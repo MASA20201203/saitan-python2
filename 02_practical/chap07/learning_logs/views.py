@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .models import Topic
-from .forms import TopicForm
+from .forms import TopicForm, EntryForm
 
 def index(request):
     """学習ノートのホームページ"""
@@ -35,3 +35,23 @@ def new_topic(request):
     # 空または無効なフォームを表示する
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
+
+def new_entry(request, topic_id):
+    """特定のトピックに新しい記事を追加する"""
+    topic = Topic.objects.get(id=topic_id)
+
+    if request.method != 'POST':
+        # データが送信されていないので空のフォームを作成する
+        form = EntryForm()
+    else:
+        # POSTデータが送信されたのでデータを処理する
+        form = EntryForm(data=request.POST)
+        if form.is_valid():
+            new_entry = form.save(commit=False)
+            new_entry.topic = topic
+            new_entry.save()
+            return redirect('learning_logs:topic', topic_id=topic_id)
+
+    # 空または無効なフォームを表示する
+    context = {'topic': topic, 'form': form}
+    return render(request, 'learning_logs/new_entry.html', context)
