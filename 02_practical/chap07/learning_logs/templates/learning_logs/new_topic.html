@@ -4,7 +4,7 @@
   <p>新しいトピックを追加します:</p>
   <form action="{% url 'learning_logs:new_topic' %}" method='post'>
     {% csrf_token %}
-    {{ rorm.as_div }}
+    {{ form.as_div }}
     <button name='submit'>トピックを追加する</button>
   </form>
 
