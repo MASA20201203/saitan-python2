@@ -4,6 +4,7 @@
   {% if user.is_authenticated %}
     こんにちは、{{ user.username }}さん
   {% else %}
+    <a href="{% url 'accounts:register' %}">ユーザー登録</a> -
     <a href="{% url 'accounts:login' %}">ログイン</a>
   {% endif %}
 </p>
