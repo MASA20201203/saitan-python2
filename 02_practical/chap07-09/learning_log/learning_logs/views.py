@@ -71,6 +71,8 @@ def edit_entry(request, entry_id):
     """既存の記事を編集する"""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
+    if topic.owner != request.user:
+        raise Http404
 
     if request.method != 'POST':
         # 初回リクエスト、現在の記事をフォームで表示する
