@@ -2,5 +2,5 @@
 # それぞれ個別のコンテナにデプロイされる
 
 db:
-  type: postgresql:12
+  type: postgresql:13
   disk: 1024
