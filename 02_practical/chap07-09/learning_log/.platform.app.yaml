@@ -15,7 +15,7 @@ web:
       passthru: true
     "/static":
       root: "static"
-      expires: 1r
+      expires: 1h
       allow: true
 
 # アプリケーションの永続ディスクのサイズ(MB単位)
