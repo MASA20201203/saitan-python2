@@ -1,4 +1,4 @@
-# 受け取ったURLをPlatform.shがどのように処理するかを記述する
+# Each route describes how an incoming URL will be processed by Platform.sh.
 
 "https://{default}/":
     type: upstream
