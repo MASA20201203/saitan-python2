@@ -2,7 +2,7 @@ name: "ll_project"
 type: "python:3.12"
 
 relationships:
-  database: postgresql:13
+  database: "db:postgresql"
 
 # アプリがウェブに公開されるときに使用する設定
 web:
